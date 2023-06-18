@@ -109,12 +109,14 @@ router.get("/pdf/:id", auth.optional, async (req, res, next)=>{
         res.sendFile(pdfBuffer)
       });
 })*/
-router.post('/display/:id', auth.optional, async (req, res, next) => {
+router.post('/display', auth.optional, async (req, res, next) => {
     console.log("key:"+ req.body.key)
     console.log("id:"+ req.params.id)
+    
         if(!req.body.userid){
             try {   
-                let prime=decodeURI(req.params.id)
+                const url=req.body.url;
+                let prime=decodeURI(url)
                 //let prime= req.params.id
                 console.log("id:"+ prime)
                 key= req.body.key
