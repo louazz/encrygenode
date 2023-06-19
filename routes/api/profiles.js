@@ -7,7 +7,7 @@ const Users = mongoose.model('Users');
 router.post('/', auth.required, async (req, res, next) => {
 
   const { body: { profile } } = req;
-
+          console.log(profile)
 
   const finalProfile = new Profiles(profile);
  const  user= await Users.findOneAndUpdate({_id: profile.user},{
@@ -15,7 +15,7 @@ router.post('/', auth.required, async (req, res, next) => {
 })
   console.log(user)
   
-
+console.log(finalProfile)
 return finalProfile.save()
   .then(() => res.json({ profile: finalProfile }));
 });
@@ -54,6 +54,7 @@ router.get('/show/:id', auth.required, async(req, res, next) => {
   catch(e){
   return   res.status(401).json({message: e.message});
   }
+  console.log(Fprofile)
 return res.json(Fprofile);
 
 });

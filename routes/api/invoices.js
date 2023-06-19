@@ -45,70 +45,7 @@ router.get('/', auth.required, async (req, res, next) => {
     } catch(error) {
         res.status(404).json({message: error.message});
     }
-})/*
-router.get("/pdf/:id", auth.optional, async (req, res, next)=>{
-    let options = { format: 'A4' };
-    const id= req.params.id
-    const products= await Products.findOne({_id: id});
-    const client= await Clients.findOne({_id:products.client});
-    const profile= await Profiles.findOne({user:products.user})
-    let file = { content: `<html><head><title>Doc ${Date()}</title><link rel="stylesheet" href="/main.css"> <link rel="stylesheet" href="/App.css">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"></head><body ><div class="container">
-    <div class="box" >
-                        <div class="one"><p><small> {client["name"]}<br />
-                            ${client["Faddress"]}<br />
-                            ${client["country"]}<br />
-                            ${client["city"]}<br />
-                            ${client["postcode"]}</small></p> </div>
-                        <div class="one"><p class="float-right"><small>{profile.Institution} <br />
-                            ${profile.postcode} <br />
-                            ${profile.city} <br />
-                            ${profile.country}</small></p></div>
-                    </div>
-
-                    <center><h5>Invoice</h5><p><small>id: ${id}</small></p> <p> <canvas id="qrcode"></canvas><br/><small>scan and share</small></p> </center>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th colspan="3">Product</th>
-                                <th>Total: ${total} £</th>
-
-                            </tr>
-                            <tr>
-                                <th>id</th>
-                                <th>name</th>
-                                <th>price</th>
-                                <th>quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${
-                                products.map(
-                                    product => <>
-                                        <tr>
-                                            <td><strong>{product.id}</strong></td>
-                                            <td>{product.name}</td>
-                                            <td>{product.price} £</td>
-                                            <td>{product.quantity}</td>
-                                        </tr> </>
-                                )
-                            }
-
-                        </tbody>
-                    </table>
-                    <div className="box">
-                        <div className="one"><small>Date and time: ${Date()}</small></div>
-                        <div className="one"><p className="float-right"><small>signature</small></p></div>
-                    </div></div><script type="text/javascript">
-                    new QRious({element: document.getElementById("qrcode"), value: "https://webisora.com"});
-                    </script><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.js"></script></body></html>
-    ` };
-    html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
-        console.log("PDF Buffer:-", pdfBuffer);
-        res.sendFile(pdfBuffer)
-      });
-})*/
+})
 router.post('/display', auth.optional, async (req, res, next) => {
     console.log("key:"+ req.body.key)
     console.log("id:"+ req.params.id)
