@@ -44,7 +44,7 @@ router.post('/', auth.optional, async (req, res, next) => {
   const finalUser = new Users(user);
 
   finalUser.setPassword(user.password);
-  let img = await QRCode.toDataURL('http://46.101.201.7/');
+  let img = await QRCode.toDataURL('http://encrygen.com/');
   return finalUser.save()
     .then(async() => {
       

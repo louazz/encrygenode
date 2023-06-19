@@ -90,14 +90,14 @@ router.post('/new', auth.required, async (req, res, next) => {
     newproducts.encr= u.toString()
     try {
         await newproducts.save();
-        let img = await QRCode.toDataURL('http://46.101.201.7/document/'+encodeURI(newproducts.encr));
+        let img = await QRCode.toDataURL('http://encrygen.com/document/'+encodeURI(newproducts.encr));
         let info =  transporter.sendMail({
             from: '"EncrygeN 👻" <ecrygen@gmail.com>',
             to: user.email,
             subject: `Your last generation: ${newproducts._id} ✔`,
             text: 'Important',
             attachDataUrls: true,
-            html: `Dear user, <p>You have generated a document using encrygen with the following details: </p><h4>key: ${doc.key}</h4> </br> <img src= ${img} ><br> Link: ${'http://46.101.201.7/document/'+encodeURI(newproducts.encr)}<p>Best,</p><p>EncrygeN Team</p> `
+            html: `Dear user, <p>You have generated a document using encrygen with the following details: </p><h4>key: ${doc.key}</h4> </br> <img src= ${img} ><br> Link: ${'http://encrygen.com/document/'+encodeURI(newproducts.encr)}<p>Best,</p><p>EncrygeN Team</p> `
           });
        res.status(201).json(newproducts);
 
